@@ -1,7 +1,28 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
+import React from 'react';
 import 'react-calendar/dist/Calendar.css';
-import moment from 'moment';
+import { Routes, Route } from 'react-router-dom';
+import WorkTagTable from './work-tag-table';
+
+function WorkSetting() {
+  return (
+    <div>
+      <div>
+        <label>급여시작일</label>
+        <input type="text" placeholder="입력"></input>
+        <br />
+        <label>급여종료일</label>
+        <input type="text" placeholder="입력"></input>
+      </div>
+      <label>기본 단가</label>
+      <input type="text" placeholder="입력"></input>
+      <div>
+        <h3>나의 근로 태그 목록</h3>
+        <WorkTagTable />
+      </div>
+      <button>추가</button>
+    </div>
+  );
+}
 
 function WorkingPeriod(props) {
   return (
@@ -26,22 +47,11 @@ function WorkInfo(props) {
 }
 
 function App() {
-  const [value, onChange] = useState(new Date());
-  const info = [
-    { id: 1, content: '총 급여' },
-    { id: 2, content: '근무일' },
-    { id: 3, content: '총 공수' },
-  ];
 
   return (
-    <div className="App">
-      <Calendar onChange={onChange} value={value}></Calendar>
-      <div>
-        <WorkingPeriod value={value} />
-        <WorkInfo data={info} />
-        <button>설정</button>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/work_setting" element={<WorkSetting />} />
+    </Routes>
   );
 }
 
