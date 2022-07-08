@@ -24,7 +24,30 @@ function WorkSetting() {
   );
 }
 
+function WorkingPeriod(props) {
+  return (
+    <div>
+      {moment(props.value).format('YYYY년 MM월 DD일')}부터{' '}
+      {moment(props.value).add(1, 'months').format('YYYY년 MM월 DD일')}까지{' '}
+      <span>상세 내역</span>
+    </div>
+  );
+}
+
+function WorkInfo(props) {
+  const workInfo = props.data.map((info) => {
+    return (
+      <span key={info.id}>
+        {info.content}
+        <br />
+      </span>
+    );
+  });
+  return <div>{workInfo}</div>;
+}
+
 function App() {
+
   return (
     <Routes>
       <Route path="/work_setting" element={<WorkSetting />} />
