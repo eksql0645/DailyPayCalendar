@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-import { Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import WorkTagTable from './work-tag-table';
+import moment from 'moment';
+import Calendar from 'react-calendar';
 
 function WorkSetting() {
   return (
@@ -46,10 +48,29 @@ function WorkInfo(props) {
   return <div>{workInfo}</div>;
 }
 
-function App() {
+function CalendarInfo() {
+  const [value, onChange] = useState(new Date());
+  const elements = [
+    { id: 1, content: '총 공수' },
+    { id: 2, content: '총 급여' },
+    { id: 3, content: '총 근무일' },
+  ];
+  return (
+    <div>
+      <Calendar onChange={onChange} value={value}></Calendar>
+      <WorkingPeriod value={value} />
+      <WorkInfo data={elements} />
+      <Link to="/work_setting">
+        <button>설정</button>
+      </Link>
+    </div>
+  );
+}
 
+function App() {
   return (
     <Routes>
+      <Route path="/calendar" element={<CalendarInfo />} />
       <Route path="/work_setting" element={<WorkSetting />} />
     </Routes>
   );
