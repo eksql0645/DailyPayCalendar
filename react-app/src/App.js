@@ -67,11 +67,28 @@ function CalendarInfo() {
   );
 }
 
+function Login() {
+  return (
+    <div>
+      <label>이메일</label>
+      <input type="email" placeholder="이메일을 입력하세요."></input>
+      <br />
+      <label>비밀번호</label>
+      <input type="password" placeholder="비밀번호를 입력하세요."></input>
+      <br />
+      <Link to="/find_password">비밀번호 찾기</Link>
+      <br />
+      <button type="button">회원가입</button>
+    </div>
+  );
+}
+
 function App() {
   return (
     <Routes>
       <Route path="/calendar" element={<CalendarInfo />} />
       <Route path="/work_setting" element={<WorkSetting />} />
+      <Route path="/" element={<Login />} />
     </Routes>
   );
 }
