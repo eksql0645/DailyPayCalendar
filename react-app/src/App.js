@@ -4,7 +4,8 @@ import { Link, Routes, Route } from 'react-router-dom';
 import WorkTagTable from './work-tag-table';
 import moment from 'moment';
 import Calendar from 'react-calendar';
-import './App.css';
+import Modal from './components/Modal';
+
 function WorkSetting() {
   return (
     <div>
@@ -58,7 +59,11 @@ function CalendarInfo() {
   ];
   return (
     <div>
-      {!isLogin && <Login />}
+      {!isLogin && (
+        <Modal closeModal={() => setIsLogin(!isLogin)}>
+          <Login />
+        </Modal>
+      )}
       <Calendar onChange={onChange} value={value}></Calendar>
       <WorkingPeriod value={value} />
       <WorkInfo data={elements} />
@@ -71,16 +76,18 @@ function CalendarInfo() {
 
 function Login() {
   return (
-    <div className="modal">
-      <label>이메일</label>
-      <input type="email" placeholder="이메일을 입력하세요."></input>
-      <br />
-      <label>비밀번호</label>
-      <input type="password" placeholder="비밀번호를 입력하세요."></input>
-      <br />
-      <Link to="/findPassword">비밀번호 찾기</Link>
-      <br />
-
+    <div>
+      <div>
+        <label>이메일</label>
+        <input type="email" placeholder="이메일을 입력하세요."></input>
+      </div>
+      <div>
+        <label>비밀번호</label>
+        <input type="password" placeholder="비밀번호를 입력하세요."></input>
+      </div>
+      <div>
+        <Link to="/findPassword">비밀번호 찾기</Link>
+      </div>
       <Link to="/signUp">
         <button>회원가입</button>
       </Link>
