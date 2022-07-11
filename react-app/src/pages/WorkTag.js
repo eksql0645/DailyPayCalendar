@@ -9,7 +9,15 @@ function WorkTag() {
         <p>현재 나의 기본 단가:</p>
         <WorkTagTable />
       </div>
-      <button>추가</button>
+      <div>
+        <label>근로 종류</label>
+        <input type="text" placeholder="주간"></input>
+        <label>공수</label>
+        <input type="number" placeholder="1.0" step="0.1"></input>
+      </div>
+      <div>
+        <button>추가</button>
+      </div>
     </div>
   );
 }
