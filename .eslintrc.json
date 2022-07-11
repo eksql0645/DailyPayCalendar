@@ -1,25 +1,25 @@
 {
-    "plugins": ["prettier"],
-    "extends": [ "eslint:recommended", "plugin:prettier/recommended"],
-    "parserOptions": {
-        "ecmaVersion": 7, 
-        "sourceType": "script",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
-    "env": {
-        "es6": true,
-        "browser": false,
-        "node": true
-    },
-    "ignorePatterns": ["node_modules/"],
-    "rules": {
-      "prettier/prettier": [
-          "error",
-          {
-            "endOfLine": "off"
-          }
-      ]
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": false,
+    "node": true
+  },
+  "ignorePatterns": ["node_modules/"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
       }
+    ]
   }
+}
