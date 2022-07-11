@@ -4,7 +4,7 @@ import { Link, Routes, Route } from 'react-router-dom';
 import WorkTagTable from './work-tag-table';
 import moment from 'moment';
 import Calendar from 'react-calendar';
-
+import './App.css';
 function WorkSetting() {
   return (
     <div>
@@ -50,6 +50,7 @@ function WorkInfo(props) {
 
 function CalendarInfo() {
   const [value, onChange] = useState(new Date());
+  const [isLogin, setIsLogin] = useState(false);
   const elements = [
     { id: 1, content: '총 공수' },
     { id: 2, content: '총 급여' },
@@ -57,10 +58,11 @@ function CalendarInfo() {
   ];
   return (
     <div>
+      {!isLogin && <Login />}
       <Calendar onChange={onChange} value={value}></Calendar>
       <WorkingPeriod value={value} />
       <WorkInfo data={elements} />
-      <Link to="/work_setting">
+      <Link to="/workSetting">
         <button>설정</button>
       </Link>
     </div>
@@ -69,16 +71,39 @@ function CalendarInfo() {
 
 function Login() {
   return (
-    <div>
+    <div className="modal">
       <label>이메일</label>
       <input type="email" placeholder="이메일을 입력하세요."></input>
       <br />
       <label>비밀번호</label>
       <input type="password" placeholder="비밀번호를 입력하세요."></input>
       <br />
-      <Link to="/find_password">비밀번호 찾기</Link>
+      <Link to="/findPassword">비밀번호 찾기</Link>
       <br />
-      <button type="button">회원가입</button>
+
+      <Link to="/signUp">
+        <button>회원가입</button>
+      </Link>
+    </div>
+  );
+}
+
+function SignUp() {
+  return (
+    <div className="modal">
+      <div>
+        <label>이메일</label>
+        <input type="email" placeholder="이메일을 입력하세요"></input>
+      </div>
+      <div>
+        <label>닉네임</label>
+        <input type="email" placeholder="닉네임을 원하시면 입력하세요"></input>
+      </div>
+      <div>
+        <label>비밀번호</label>
+        <input type="password" placeholder="비밀번호를 입력하세요"></input>
+      </div>
+      <button>가입하기</button>
     </div>
   );
 }
@@ -86,9 +111,8 @@ function Login() {
 function App() {
   return (
     <Routes>
-      <Route path="/calendar" element={<CalendarInfo />} />
-      <Route path="/work_setting" element={<WorkSetting />} />
-      <Route path="/" element={<Login />} />
+      <Route path="/workSetting" element={<WorkSetting />} />
+      <Route path="/" element={<CalendarInfo />} />
     </Routes>
   );
 }
