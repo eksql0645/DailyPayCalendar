@@ -6,7 +6,7 @@ function Modal(props) {
     props.closeModal();
   };
   return (
-    <div className="modal">
+    <div className="modal" onClick={closeModal}>
       <div className="modalBody" onClick={(e) => e.stopPropagation()}>
         <button id="modalCloseBtn" onClick={closeModal}>
           ✖

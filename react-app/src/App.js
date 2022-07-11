@@ -48,10 +48,37 @@ function WorkInfo(props) {
   });
   return <div>{workInfo}</div>;
 }
-
+function Main() {
+  const [loginModal, setLoginModal] = useState(true);
+  const [signUpModal, setSignUpModal] = useState(true);
+  return (
+    <div>
+      <button onClick={() => setSignUpModal(!signUpModal)}>SignUp</button>
+      {!signUpModal && (
+        <Modal
+          closeModal={() => {
+            setSignUpModal(!signUpModal);
+          }}
+        >
+          <SignUp signUpModal={signUpModal} setSignUpModal={setSignUpModal} />
+        </Modal>
+      )}
+      <button onClick={() => setLoginModal(!loginModal)}>Login</button>
+      {!loginModal && (
+        <Modal
+          closeModal={() => {
+            setLoginModal(!loginModal);
+          }}
+        >
+          <Login loginModal={loginModal} setLoginModal={setLoginModal} />
+        </Modal>
+      )}
+    </div>
+  );
+}
 function CalendarInfo() {
   const [value, onChange] = useState(new Date());
-  const [isLogin, setIsLogin] = useState(false);
+
   const elements = [
     { id: 1, content: '총 공수' },
     { id: 2, content: '총 급여' },
@@ -59,11 +86,6 @@ function CalendarInfo() {
   ];
   return (
     <div>
-      {!isLogin && (
-        <Modal closeModal={() => setIsLogin(!isLogin)}>
-          <Login />
-        </Modal>
-      )}
       <Calendar onChange={onChange} value={value}></Calendar>
       <WorkingPeriod value={value} />
       <WorkInfo data={elements} />
@@ -74,7 +96,12 @@ function CalendarInfo() {
   );
 }
 
-function Login() {
+function Login(props) {
+  function loginCheck() {
+    // db에 일치하는 이메일 비번 있는지 확인 후
+    props.setLoginModal(!props.loginModal); // 일치하면 모달 창 닫고 캘린더로 이동
+    // 일치하는 계정이 없으면 alert창 띄우기
+  }
   return (
     <div>
       <div>
@@ -88,16 +115,19 @@ function Login() {
       <div>
         <Link to="/findPassword">비밀번호 찾기</Link>
       </div>
-      <Link to="/signUp">
-        <button>회원가입</button>
-      </Link>
+      <button onClick={loginCheck}>로그인</button>
     </div>
   );
 }
 
-function SignUp() {
+function SignUp(props) {
+  function signUpCheck() {
+    // 일치하는 계정 확인
+    // 없으면 가입 후 자동 로그인
+    props.setSignUp(!props.signUp); // 모달 창 닫기
+  }
   return (
-    <div className="modal">
+    <div>
       <div>
         <label>이메일</label>
         <input type="email" placeholder="이메일을 입력하세요"></input>
@@ -110,7 +140,7 @@ function SignUp() {
         <label>비밀번호</label>
         <input type="password" placeholder="비밀번호를 입력하세요"></input>
       </div>
-      <button>가입하기</button>
+      <button onClick={signUpCheck}>가입하기</button>
     </div>
   );
 }
@@ -119,7 +149,8 @@ function App() {
   return (
     <Routes>
       <Route path="/workSetting" element={<WorkSetting />} />
-      <Route path="/" element={<CalendarInfo />} />
+      <Route path="/calendar" element={<CalendarInfo />} />
+      <Route path="/" element={<Main />} />
     </Routes>
   );
 }
