@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import WorkSetting from './WorkSetting';
+import Modal from '../components/Modal';
 
 function WorkingPeriod(props) {
   return (
@@ -27,6 +29,7 @@ function WorkInfo(props) {
 
 function CalendarInfo() {
   const [value, onChange] = useState(new Date());
+  const [workModal, setWorkModal] = useState(true);
 
   const elements = [
     { id: 1, content: '총 공수' },
@@ -38,9 +41,25 @@ function CalendarInfo() {
       <Calendar onChange={onChange} value={value}></Calendar>
       <WorkingPeriod value={value} />
       <WorkInfo data={elements} />
-      <Link to="/workSetting">
-        <button>설정</button>
+      <Link to="/workTag">
+        <button>근로태그</button>
       </Link>
+      <button
+        onClick={() => {
+          setWorkModal(!workModal);
+        }}
+      >
+        설정
+      </button>
+      {!workModal && (
+        <Modal
+          closeModal={() => {
+            setWorkModal(!workModal);
+          }}
+        >
+          <WorkSetting />
+        </Modal>
+      )}
     </div>
   );
 }

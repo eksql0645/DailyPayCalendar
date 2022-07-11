@@ -1,15 +1,15 @@
 import React from 'react';
 import 'react-calendar/dist/Calendar.css';
 import { Routes, Route } from 'react-router-dom';
-import WorkSetting from './pages/WorkSetting';
 import CalendarInfo from './pages/CalendarInfo';
 import Main from './pages/Main';
+import WorkTag from './pages/WorkTag';
 
 function App() {
   return (
     <Routes>
-      <Route path="/workSetting" element={<WorkSetting />} />
       <Route path="/calendar" element={<CalendarInfo />} />
+      <Route path="/workTag" element={<WorkTag />} />
       <Route path="/" element={<Main />} />
     </Routes>
   );
