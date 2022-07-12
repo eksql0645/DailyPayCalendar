@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import Calendar from 'react-calendar';
+import FullCalendar from '@fullcalendar/react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import WorkSetting from './WorkSetting';
 import Modal from '../components/Modal';
+import Schedule from './Schedule';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
 function WorkingPeriod(props) {
   return (
@@ -28,9 +31,11 @@ function WorkInfo(props) {
 }
 
 function CalendarInfo() {
-  const [value, onChange] = useState(new Date());
+  const [value, setValue] = useState(new Date());
   const [workModal, setWorkModal] = useState(true);
-
+  function handleDateClick(arg) {
+    setValue(arg.dateStr);
+  }
   const elements = [
     { id: 1, content: '총 공수' },
     { id: 2, content: '총 급여' },
@@ -38,7 +43,12 @@ function CalendarInfo() {
   ];
   return (
     <div>
-      <Calendar onChange={onChange} value={value}></Calendar>
+      <FullCalendar
+        plugins={[dayGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        dateClick={handleDateClick}
+      />
+      <Schedule value={value} />
       <WorkingPeriod value={value} />
       <WorkInfo data={elements} />
       <Link to="/workTag">

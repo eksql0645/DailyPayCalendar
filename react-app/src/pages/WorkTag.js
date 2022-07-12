@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkTagTable from '../work-tag-table';
+import WorkTagTable from '../components/work-tag-table';
 
 function WorkTag() {
   return (
@@ -13,7 +13,7 @@ function WorkTag() {
         <label>근로 종류</label>
         <input type="text" placeholder="주간"></input>
         <label>공수</label>
-        <input type="number" placeholder="1.0" step="0.1"></input>
+        <input type="number" placeholder="1.0" step="0.1" min="0"></input>
       </div>
       <div>
         <button>추가</button>

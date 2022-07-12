@@ -1,5 +1,4 @@
 import React from 'react';
-import 'react-calendar/dist/Calendar.css';
 import { Routes, Route } from 'react-router-dom';
 import CalendarInfo from './pages/CalendarInfo';
 import Main from './pages/Main';
