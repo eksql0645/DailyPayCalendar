@@ -1,9 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-// const cors = require('cors');
-const path = require('path');
+// const cookieParser = require('cookie-parser');
+// const session = require('express-session');
+const cors = require('cors');
+// const path = require('path');
 const dotenv = require('dotenv');
 const { sequelize } = require('./models');
 
@@ -28,7 +28,7 @@ sequelize
   });
 
 // cors 에러 방지
-// app.use(cors());
+app.use(cors());
 
 // body-parser: 요청 데이터 -> req.body 객체로 변환
 app.use(express.json());
@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
   res.send('Hello express');
 });
 
-// 리액트 연결
+// 리액트 연결 - 빌드 후에 설정
 // react-app/build 안에 파일들을 static파일로 설정
 // app.use(express.static(path.join(__dirname, "react-app/build")));
 
