@@ -1,77 +1,15 @@
-import React, { useState } from 'react';
-import 'react-calendar/dist/Calendar.css';
-import { Link, Routes, Route } from 'react-router-dom';
-import WorkTagTable from './work-tag-table';
-import moment from 'moment';
-import Calendar from 'react-calendar';
-
-function WorkSetting() {
-  return (
-    <div>
-      <div>
-        <label>급여시작일</label>
-        <input type="text" placeholder="입력"></input>
-        <br />
-        <label>급여종료일</label>
-        <input type="text" placeholder="입력"></input>
-      </div>
-      <label>기본 단가</label>
-      <input type="text" placeholder="입력"></input>
-      <div>
-        <h3>나의 근로 태그 목록</h3>
-        <WorkTagTable />
-      </div>
-      <button>추가</button>
-    </div>
-  );
-}
-
-function WorkingPeriod(props) {
-  return (
-    <div>
-      {moment(props.value).format('YYYY년 MM월 DD일')}부터{' '}
-      {moment(props.value).add(1, 'months').format('YYYY년 MM월 DD일')}까지{' '}
-      <span>상세 내역</span>
-    </div>
-  );
-}
-
-function WorkInfo(props) {
-  const workInfo = props.data.map((info) => {
-    return (
-      <span key={info.id}>
-        {info.content}
-        <br />
-      </span>
-    );
-  });
-  return <div>{workInfo}</div>;
-}
-
-function CalendarInfo() {
-  const [value, onChange] = useState(new Date());
-  const elements = [
-    { id: 1, content: '총 공수' },
-    { id: 2, content: '총 급여' },
-    { id: 3, content: '총 근무일' },
-  ];
-  return (
-    <div>
-      <Calendar onChange={onChange} value={value}></Calendar>
-      <WorkingPeriod value={value} />
-      <WorkInfo data={elements} />
-      <Link to="/work_setting">
-        <button>설정</button>
-      </Link>
-    </div>
-  );
-}
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import CalendarInfo from './pages/CalendarInfo';
+import Main from './pages/Main';
+import WorkTag from './pages/WorkTag';
 
 function App() {
   return (
     <Routes>
       <Route path="/calendar" element={<CalendarInfo />} />
-      <Route path="/work_setting" element={<WorkSetting />} />
+      <Route path="/workTag" element={<WorkTag />} />
+      <Route path="/" element={<Main />} />
     </Routes>
   );
 }
