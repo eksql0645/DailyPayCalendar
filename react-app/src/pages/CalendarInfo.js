@@ -33,6 +33,24 @@ function WorkInfo(props) {
 function CalendarInfo() {
   const [value, setValue] = useState(new Date());
   const [workModal, setWorkModal] = useState(true);
+  const data = [
+    {
+      id: 1,
+      date: '2022-07-15',
+      title: '1.0',
+      color: 'skyblue',
+      contents: '태그, 메모',
+    },
+  ];
+  function handleEventContent(eventInfo) {
+    return (
+      <>
+        <b>{eventInfo.timeText}</b>
+        <i>{eventInfo.event.title}</i>
+      </>
+    );
+  }
+
   function handleDateClick(arg) {
     setValue(arg.dateStr);
   }
@@ -41,12 +59,17 @@ function CalendarInfo() {
     { id: 2, content: '총 급여' },
     { id: 3, content: '총 근무일' },
   ];
+
   return (
     <div>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         dateClick={handleDateClick}
+        events={data}
+        editable={true}
+        selectable={true}
+        eventContent={handleEventContent}
       />
       <Schedule value={value} />
       <WorkingPeriod value={value} />
