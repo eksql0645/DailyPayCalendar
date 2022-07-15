@@ -1,11 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
-// const cookieParser = require('cookie-parser');
-// const session = require('express-session');
 const cors = require('cors');
-// const path = require('path');
 const dotenv = require('dotenv');
 const { sequelize } = require('./models');
+const CalendarRouter = require('./routes/calendar');
+// const cookieParser = require('cookie-parser');
+// const session = require('express-session');
+// const path = require('path');
 
 const app = express();
 
@@ -37,10 +38,10 @@ app.use(express.urlencoded({ extended: false }));
 // 개발용 로그 출력
 app.use(morgan('dev'));
 
-app.get('/', (req, res) => {
-  res.send('Hello express');
+app.use('/', CalendarRouter);
+app.use((req, res, next) => {
+  res.status(404).send('Not Found');
 });
-
 // 리액트 연결 - 빌드 후에 설정
 // react-app/build 안에 파일들을 static파일로 설정
 // app.use(express.static(path.join(__dirname, "react-app/build")));

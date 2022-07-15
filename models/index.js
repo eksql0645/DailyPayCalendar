@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
-const config = require('../config/config.json')[env];
 const User = require('./user');
 const Calendar = require('./calendar');
 const WorkInfo = require('./workInfo');
 const WorkTag = require('./workTag');
 
 const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config')[env];
 
 const db = {};
 

@@ -27,11 +27,11 @@ module.exports = class Calendar extends Sequelize.Model {
   }
   // 테이블 간 관계 정립
   static associate(db) {
-    db.Calendar.belongTo(db.User, {
+    db.Calendar.belongsTo(db.User, {
       foreignKey: 'cal_worker',
       targetKey: 'id',
     });
-    db.Calendar.belongToMany(db.WorkTag, {
+    db.Calendar.belongsToMany(db.WorkTag, {
       through: 'CalendarWorkTag',
     });
   }

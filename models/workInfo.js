@@ -26,7 +26,7 @@ module.exports = class User extends Sequelize.Model {
   }
   // 테이블 간 관계 정립
   static associate(db) {
-    db.WorkInfo.belongTo(db.User, {
+    db.WorkInfo.belongsTo(db.User, {
       foreignKey: 'work_worker',
       sourceKey: 'id',
     });
