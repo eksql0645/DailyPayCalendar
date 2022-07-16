@@ -15,7 +15,7 @@ const app = express();
 
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || '포트 번호를 설정하세요.';
 
 // db 연결 객체인 sequelize로 MySQL과 연동
 sequelize
