@@ -5,8 +5,10 @@ userRouter.post('/signup', (req, res) => {
   res.send('회원가입');
 });
 
+// 로그인
 userRouter.post('/login', (req, res) => {
-  res.send('로그인');
+  // db에 일치하는 이메일 비번 있는지 확인
+  res.send(req.body);
 });
 
 // 이하 로그인 유무 미들웨어 추가하기
