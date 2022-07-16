@@ -3,7 +3,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { sequelize } = require('./models');
-const CalendarRouter = require('./routes/calendar');
+const calendarRouter = require('./routers/calendar-router');
+const userRouter = require('./routers/user-router');
+const workInfoRouter = require('./routers/workinfo-router');
+const workTagRouter = require('./routers/worktag-router');
 // const cookieParser = require('cookie-parser');
 // const session = require('express-session');
 // const path = require('path');
@@ -38,7 +41,12 @@ app.use(express.urlencoded({ extended: false }));
 // 개발용 로그 출력
 app.use(morgan('dev'));
 
-app.use('/', CalendarRouter);
+app.use('/api/user', userRouter);
+app.use('/api/calendar', calendarRouter);
+app.use('/api/workinfo', workInfoRouter);
+app.use('/api/worktag', workTagRouter);
+
+// 에러 미들웨어
 app.use((req, res, next) => {
   res.status(404).send('Not Found');
 });
