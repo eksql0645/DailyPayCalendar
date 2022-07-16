@@ -1,5 +1,6 @@
 import React from 'react';
 import WorkTagTable from '../components/work-tag-table';
+import Button from '../components/common/Button';
 
 function WorkTag() {
   return (
@@ -16,7 +17,7 @@ function WorkTag() {
         <input type="number" placeholder="1.0" step="0.1" min="0"></input>
       </div>
       <div>
-        <button>추가</button>
+        <Button>추가</Button>
       </div>
     </div>
   );
