@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import pallete from '../lib/styles/palette';
+import pallete from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
 // 모달 레이아웃 (모달 박스)
 

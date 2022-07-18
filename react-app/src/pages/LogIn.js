@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import ModalTemplate from '../components/modal/ModalTemplate';
+import ModalForm from '../components/modal/ModalForm';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -37,33 +39,9 @@ function Login(props) {
   }
 
   return (
-    <form onSubmit={handleLoginSubmit}>
-      <label>
-        이메일
-        <input
-          type="email"
-          placeholder="이메일을 입력하세요."
-          value={email}
-          onChange={handleEmailChange}
-        />
-      </label>
-      <div>
-        <label>
-          비밀번호
-          <input
-            type="password"
-            placeholder="비밀번호를 입력하세요."
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </label>
-      </div>
-      <div>
-        <Link to="/findPassword">비밀번호 찾기</Link>
-        <Link to="/signup">회원가입</Link>
-      </div>
-      <button type="submit">로그인</button>
-    </form>
+    <ModalTemplate>
+      <ModalForm type="login" />
+    </ModalTemplate>
   );
 }
 
