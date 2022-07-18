@@ -3,10 +3,10 @@ import FullCalendar from '@fullcalendar/react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import WorkSetting from './WorkSetting';
-import Modal from '../components/Modal';
 import Schedule from './Schedule';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import Button from '../components/common/Button';
 
 function WorkingPeriod(props) {
   return (
@@ -75,24 +75,16 @@ function CalendarInfo() {
       <WorkingPeriod value={value} />
       <WorkInfo data={elements} />
       <Link to="/workTag">
-        <button>근로태그</button>
+        <Button>근로태그</Button>
       </Link>
-      <button
+      <Button
         onClick={() => {
           setWorkModal(!workModal);
         }}
       >
         설정
-      </button>
-      {!workModal && (
-        <Modal
-          closeModal={() => {
-            setWorkModal(!workModal);
-          }}
-        >
-          <WorkSetting />
-        </Modal>
-      )}
+      </Button>
+      <WorkSetting />
     </div>
   );
 }
