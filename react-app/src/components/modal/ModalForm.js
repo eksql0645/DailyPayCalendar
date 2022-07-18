@@ -49,23 +49,27 @@ const Footer = styled.div`
   }
 `;
 
-const ModalForm = ({ type }) => {
+const ModalForm = ({ form, type, onChange, onSubmit }) => {
   const text = textMap[type];
   return (
     <StyledModalForm>
       <h3>{text}</h3>
-      <form>
+      <form onSubmit={onSubmit}>
         <StyledInput
           autoComplete="email"
           name="email"
           placeholder="이메일"
           type="email"
+          onChange={onChange}
+          value={form.email}
         />
         <StyledInput
           autoComplete="new-password"
           name="password"
           placeholder="비밀번호"
           type="password"
+          onChange={onChange}
+          value={form.password}
         />
         {type === 'signup' && (
           <StyledInput
@@ -73,6 +77,8 @@ const ModalForm = ({ type }) => {
             name="passwordConfirm"
             placeholder="비밀번호 확인"
             type="password"
+            onChange={onChange}
+            value={form.passwordConfirm}
           />
         )}
         <Button cyan fullWidth>
