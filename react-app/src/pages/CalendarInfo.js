@@ -3,7 +3,6 @@ import FullCalendar from '@fullcalendar/react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import WorkSetting from './WorkSetting';
-import Modal from '../components/Modal';
 import Schedule from './Schedule';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -85,15 +84,7 @@ function CalendarInfo() {
       >
         설정
       </Button>
-      {!workModal && (
-        <Modal
-          closeModal={() => {
-            setWorkModal(!workModal);
-          }}
-        >
-          <WorkSetting />
-        </Modal>
-      )}
+      <WorkSetting />
     </div>
   );
 }
