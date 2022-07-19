@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CalendarInfo from './pages/CalendarInfo';
 import LogIn from './pages/LogIn';
-import SignUp from './pages/Signup';
+import SignUp from './pages/SignUp';
 import WorkSetting from './pages/WorkSetting';
 import WorkTag from './pages/WorkTag';
 
