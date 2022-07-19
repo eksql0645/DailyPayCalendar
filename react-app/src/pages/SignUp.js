@@ -1,11 +1,11 @@
 import React from 'react';
-import ModalForm from '../components/modal/ModalForm';
 import ModalTemplate from '../components/modal/ModalTemplate';
+import SignupForm from '../containers/SignupForm';
 
-function SignUp(props) {
+function SignUp() {
   return (
     <ModalTemplate>
-      <ModalForm type="signup" />
+      <SignupForm />
     </ModalTemplate>
   );
 }
